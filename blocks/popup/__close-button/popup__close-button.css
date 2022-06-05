@@ -2,15 +2,15 @@
     background-image: url(../../../images/__close.svg);
     background-repeat: no-repeat;
     background-position: center;
-    background-color: black;
+    background-color: transparent;
     width: 32px;
     height: 32px;
     cursor: pointer;
     position: absolute;
-    left: 863px;
-    top: 155px;
     border: none;
     padding: 0;
+    left: 440px;
+    top: -35px;
 }
 
 .popup__close-button:hover {
@@ -22,7 +22,7 @@
     .popup__close-button {
         width: 20px;
         height: 20px;
-        left: 281px;
-        top: 87px;
+        left: 260px;
+        background-size: contain;
     }
 }

@@ -8,10 +8,11 @@
     font-size: 18px;
     line-height: 22px;
     padding: 0;
+    border: none;
 }
 
 .popup__content-submit-button:hover {
-    opacity: 0.6;
+    opacity: 0.8;
     transition: 1s;
 }
 
