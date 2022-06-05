@@ -1,8 +1,8 @@
-.popup__content-form_name {
-    margin-bottom: 30px;
+.popup__job-form {
+    margin-bottom: 48px;
+    padding: 0;
     width: 358px;
     height: 27px;
-    padding: 0;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     font-style: normal;
@@ -12,8 +12,9 @@
 }
 
 @media screen and (max-width: 767px) {
-    .popup__content-form_name {
+    .popup__job-form {
         width: 238px;
         height: 27px;
+        margin-bottom: 45px;
     }
 }
