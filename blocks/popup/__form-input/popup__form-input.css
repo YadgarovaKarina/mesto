@@ -1,5 +1,5 @@
-.popup__job-form {
-    margin-bottom: 48px;
+.popup__form-input {
+    margin-bottom: 30px;
     padding: 0;
     width: 358px;
     height: 27px;
@@ -11,10 +11,19 @@
     line-height: 17px;
 }
 
+.popup__form-input:last-of-type {
+    margin-bottom: 48px;
+}
+
 @media screen and (max-width: 767px) {
-    .popup__job-form {
+    .popup__form-input {
         width: 238px;
         height: 27px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .popup__form-input:last-of-type {
         margin-bottom: 45px;
     }
 }

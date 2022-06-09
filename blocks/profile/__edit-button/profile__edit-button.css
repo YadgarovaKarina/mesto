@@ -8,7 +8,7 @@
     cursor: pointer;
     background-position: center;
     margin-left: 18px;
-    margin-right: 244px;
+
     margin-top: 15px;
     padding: 0;
 }
@@ -17,6 +17,7 @@
     opacity: 0.6;
     transition: 1s;
 }
+
 
 @media screen and (max-width: 767px) {
     .profile__edit-button {

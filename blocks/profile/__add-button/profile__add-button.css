@@ -8,6 +8,7 @@
     border: 1px solid white;
     cursor: pointer;
     margin-top: 15px;
+    margin-left: 240px;
     padding: 0;
 }
 
@@ -16,10 +17,16 @@
     transition: 1s;
 }
 
+@media screen and (max-width: 922px) {
+    .profile__add-button {
+        margin-left: 30px;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .profile__add-button {
         min-width: 282px;
         min-height: 50px;
-        margin-top: 36px;
+        margin: 36px 0 0;
     }
 }

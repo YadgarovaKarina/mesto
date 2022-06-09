@@ -1,13 +1,14 @@
 .element {
     background-color: white;
     max-width: 282px;
-    max-height: 361px;
+    max-height: 362px;
     border-radius: 10px;
 }
 
 
 @media screen and (max-width: 767px) {
     .element {
-        margin: 0 auto 20px;
+        margin: 0 auto;
     }
 }
+
