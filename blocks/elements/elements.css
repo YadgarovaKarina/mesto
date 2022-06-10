@@ -23,10 +23,3 @@
         gap: 20px 0;
     }
 }
-
-@media screen and (max-width: 338px) {
-    .elements {
-        margin: 0 auto;
-    }
-}
-
