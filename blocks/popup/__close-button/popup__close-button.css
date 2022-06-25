@@ -9,8 +9,8 @@
     position: absolute;
     border: none;
     padding: 0;
-    left: 440px;
-    top: -35px;
+    right: -40px;
+    top: -40px;
 }
 
 .popup__close-button:hover {
@@ -22,7 +22,7 @@
     .popup__close-button {
         width: 20px;
         height: 20px;
-        left: 260px;
+        right: 0;
         background-size: contain;
     }
 }

@@ -3,6 +3,9 @@
     max-width: 282px;
     max-height: 362px;
     border-radius: 10px;
+    list-style: none;
+    overflow: hidden;
+    position: relative;
 }
 
 
