@@ -3,7 +3,6 @@ const buttonAddCard = document.querySelector('.profile__add-button');
 const buttonAddCardSubmit = document.querySelector('.popup__submit-button_create');
 const buttonProfileSubmit= document.querySelector('.popup__submit-button_save');
 
-const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_edit-profile');
 const popupAdd = document.querySelector('.popup_new-card');
 const popupPhoto = document.querySelector('.popup_full-photo');
@@ -17,7 +16,7 @@ const profileJob = document.querySelector('.profile__description');
 const popupImage = document.querySelector('.popup__image-content');
 const popupName = document.querySelector('.popup__description');
 
-const formName = document.querySelector('.popup__form');
+const formName = document.querySelector('.popup__form_profile');
 const formNewPlace = document.querySelector('.popup__form_new');
 const nameInput = document.querySelector('#popup__item-name');
 const jobInput = document.querySelector('#popup__item-job');
@@ -33,11 +32,12 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeEsc);
+  document.removeEventListener('mousedown', closeMouse);
 };
 
 function closeEsc(e) {
-  const popupOpen = document.querySelector(".popup_opened");
   if (e.key === 'Escape') {
+    const popupOpen = document.querySelector(".popup_opened");
     closePopup(popupOpen);
   }
 };
@@ -78,7 +78,7 @@ popupClosePhoto.addEventListener('click', function () {
 }
 );
 
-function formSubmitHandler(evt) {
+function submitProfileForm(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
@@ -101,6 +101,7 @@ function createCard(name, link) {
 
   cardElement.querySelector('.element__image').addEventListener('click', function (evt) {
     popupImage.src = link;
+    popupImage.alt = name;
     popupName.textContent = name;
     openPopup(popupPhoto)
   });
@@ -112,7 +113,7 @@ function renderCard(cardElement) {
   cardContainer.prepend(cardElement);
 }
 
-function formSubmitHandlerAddPlace(evt) {
+function submitAddPlace(evt) {
   evt.preventDefault();
   const name = placeInput.value;
   const link = linkInput.value;
@@ -130,5 +131,5 @@ initialCards.forEach(function (element) {
   renderCard(cardElement);
 });
 
-formName.addEventListener('submit', formSubmitHandler);
-formNewPlace.addEventListener('submit', formSubmitHandlerAddPlace);
+formName.addEventListener('submit', submitProfileForm);
+formNewPlace.addEventListener('submit', submitAddPlace);
