@@ -19,10 +19,10 @@ const popupName = document.querySelector('.popup__description');
 
 const formName = document.querySelector('.popup__form');
 const formNewPlace = document.querySelector('.popup__form_new');
-const nameInput = document.querySelector('#form__item-name');
-const jobInput = document.querySelector('#form__item-job');
-const placeInput = document.querySelector('#form__item-place');
-const linkInput = document.querySelector('#form__item-link');
+const nameInput = document.querySelector('#popup__item-name');
+const jobInput = document.querySelector('#popup__item-job');
+const placeInput = document.querySelector('#popup__item-place');
+const linkInput = document.querySelector('#popup__item-link');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
