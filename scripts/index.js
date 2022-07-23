@@ -55,17 +55,27 @@ function closeMouse(e) {
   }
 };
 
+const buttonDisabled = (buttonElement, config) => {
+  buttonElement.disabled = true;
+  buttonElement.classList.add(config.inactiveButtonClass);
+}
+
+const buttonEnable = (buttonElement, config) => {
+  buttonElement.disabled = false;
+  buttonElement.classList.remove(config.inactiveButtonClass);
+}
+
 buttonEditProfile.addEventListener('click', function () {
   openPopup(popupProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  FormValidator._buttonEnable(buttonProfileSubmit, config);
+  buttonEnable(buttonProfileSubmit, config);
 }
 );
 
 buttonAddCard.addEventListener('click', function () {
   openPopup(popupAdd);
-  FormValidator._buttonDisabled(buttonAddCardSubmit, config);
+  buttonDisabled(buttonAddCardSubmit, config);
 }
 );
 
