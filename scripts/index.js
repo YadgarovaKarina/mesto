@@ -1,12 +1,10 @@
 import { initialCards } from './initialCards.js';
 import { Card } from './Card.js';
-import { config } from './validate.js';
+import { config } from './constans.js';
 import { FormValidator } from './FormValidator.js';
 
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const buttonAddCard = document.querySelector('.profile__add-button');
-const buttonAddCardSubmit = document.querySelector('.popup__submit-button_create');
-const buttonProfileSubmit = document.querySelector('.popup__submit-button_save');
 
 const popupProfile = document.querySelector('.popup_edit-profile');
 const popupAdd = document.querySelector('.popup_new-card');
@@ -55,27 +53,23 @@ function closeMouse(e) {
   }
 };
 
-const buttonDisabled = (buttonElement, config) => {
-  buttonElement.disabled = true;
-  buttonElement.classList.add(config.inactiveButtonClass);
-}
+const formProfile = new FormValidator(config, formName);
+formProfile.enableValidation();
 
-const buttonEnable = (buttonElement, config) => {
-  buttonElement.disabled = false;
-  buttonElement.classList.remove(config.inactiveButtonClass);
-}
+const formAdd = new FormValidator(config, formNewPlace);
+formAdd.enableValidation();
 
 buttonEditProfile.addEventListener('click', function () {
   openPopup(popupProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  buttonEnable(buttonProfileSubmit, config);
+  formProfile.buttonEnable();
 }
 );
 
 buttonAddCard.addEventListener('click', function () {
   openPopup(popupAdd);
-  buttonDisabled(buttonAddCardSubmit, config);
+  formAdd.buttonDisabled();
 }
 );
 
@@ -112,9 +106,8 @@ function clickPopup(name, link) {
 
 function createCard(name, link) {
   const data = { name, link };
-  const card = new Card(data, '.element', clickPopup);
-  const cardElement = card.generateCard();
-  return cardElement;
+  const card = new Card(data, '#card-template', clickPopup);
+  return card.generateCard();
 };
 
 function renderCard(cardElement) {
@@ -138,8 +131,3 @@ initialCards.forEach((item) => {
   renderCard(cardElement);
 });
 
-const formProfile = new FormValidator(config, formName);
-formProfile.enableValidation();
-
-const formAdd = new FormValidator(config, formNewPlace);
-formAdd.enableValidation();

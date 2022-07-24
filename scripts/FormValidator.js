@@ -32,22 +32,22 @@ export class FormValidator {
         })
     };
 
-    _buttonDisabled() {
+    buttonDisabled() {
         this._buttonElement.classList.add(this._config.inactiveButtonClass);
         this._buttonElement.setAttribute('disabled', true);
         
     };
 
-    _buttonEnable() {
+    buttonEnable() {
         this._buttonElement.classList.remove(this._config.inactiveButtonClass);
         this._buttonElement.removeAttribute('disabled');
     };
 
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._buttonDisabled();
+            this.buttonDisabled();
         } else {
-            this._buttonEnable();
+            this.buttonEnable();
         }
     };
 

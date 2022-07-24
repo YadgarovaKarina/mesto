@@ -2,21 +2,26 @@ export class Card {
   constructor(data, selector, clickPopup) {
     this._title = data.name;
     this._image = data.link;
-    this._selector = document.querySelector('#card-template').content;
+    this._selector = selector;
     this._clickPopup = clickPopup;
   }
 
   _getTemplate() {
-    const cardElement = this._selector.querySelector('.element').cloneNode(true);
+    const cardElement = document
+      .querySelector(this._selector)
+      .content
+      .querySelector('.element')
+      .cloneNode(true);
     return cardElement;
   }
 
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
+    const elementImg = this._element.querySelector('.element__image')
     this._element.querySelector('.element__title').textContent = this._title;
-    this._element.querySelector('.element__image').src = this._image;
-    this._element.querySelector('.element__image').alt = this._title;
+    elementImg.src = this._image;
+    elementImg.alt = this._title;
     return this._element;
   }
 
