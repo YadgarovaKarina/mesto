@@ -1,4 +1,4 @@
-import { initialCards, config } from '../components/constans.js';
+import { initialCards, config } from '../utils/constans.js';
 import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -49,10 +49,10 @@ buttonEditProfile.addEventListener('click', () => {
 );
 
 function handleProfile() {
-  const userData = newUser.getUserInfo();
-  nameInput.value = userData.name;
-  jobInput.value = userData.job;
-};
+  const {name, job} = newUser.getUserInfo();
+  nameInput.value = name;
+  jobInput.value = job;
+}; 
 
 buttonAddCard.addEventListener('click', function () {
   popupAdd.open();
@@ -79,15 +79,13 @@ function addCard(cardElement) {
   cardContainer.prepend(cardElement);
 }
 
-const submitProfileForm = (name, job) => {
-  newUser.setUserInfo(name, job);
+const submitProfileForm = (formData) => {
+  newUser.setUserInfo(formData);
   popupProfile.close();
 };
 
 const popupProfile = new PopupWithForm('.popup_edit-profile', submitProfileForm);
 popupProfile.setEventListeners();
-
-formName.addEventListener('submit', submitProfileForm);
 
 function handleCardClick(name, link) {
   popupImage.src = link;
@@ -103,17 +101,14 @@ function createCard(name, link) {
 };
 
 function submitAddPlace(evt) {
-  evt.preventDefault();
   const cardElement = createCard(placeInput.value, linkInput.value);
   addCard(cardElement, cardContainer);
   formNewPlace.reset();
   popupAdd.close();
 };
 
-const popupAdd = new PopupWithForm('.popup_new-card');
+const popupAdd = new PopupWithForm('.popup_new-card', submitAddPlace);
 popupAdd.setEventListeners();
-
-formNewPlace.addEventListener('submit', submitAddPlace);
 
 const initialCardList = new Section({
   items: initialCards,
