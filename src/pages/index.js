@@ -21,8 +21,6 @@ const formNewPlace = document.querySelector('.popup__form_new');
 
 const nameInput = document.querySelector('#popup__item-name');
 const jobInput = document.querySelector('#popup__item-job');
-const placeInput = document.querySelector('#popup__item-place');
-const linkInput = document.querySelector('#popup__item-link');
 const cardContainer = document.querySelector('.elements');
 
 const formProfile = new FormValidator(config, formName);
@@ -100,12 +98,12 @@ function createCard(name, link) {
   return card.generateCard();
 };
 
-function submitAddPlace(evt) {
-  const cardElement = createCard(placeInput.value, linkInput.value);
+function submitAddPlace(inputsData) { 
+  const cardElement = createCard(inputsData.name, inputsData.link); 
   addCard(cardElement, cardContainer);
   formNewPlace.reset();
   popupAdd.close();
-};
+}; 
 
 const popupAdd = new PopupWithForm('.popup_new-card', submitAddPlace);
 popupAdd.setEventListeners();
