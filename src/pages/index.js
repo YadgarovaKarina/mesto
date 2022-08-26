@@ -11,14 +11,7 @@ import './index.css';
 
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const buttonAddCard = document.querySelector('.profile__add-button');
-const popupCloseAdd = document.querySelector('.popup__close-button_add');
-const popupClosePhoto = document.querySelector('.popup__close-button_photo');
-const popupCloseButton = document.querySelector('.popup__close-button');
-const popupAvatarClose = document.querySelector('.popup__close-button_avatar');
 const avatarChangeBtn = document.querySelector('.profile__avatar-button');
-
-const popupImage = document.querySelector('.popup__image-content');
-const popupName = document.querySelector('.popup__description');
 const formName = document.querySelector('.popup__form_profile');
 const formNewPlace = document.querySelector('.popup__form_new');
 const formAvatar = document.querySelector('.popup__form_avatar');
@@ -55,7 +48,7 @@ const newUser = new UserInfo(configProfileSelector);
 
 buttonEditProfile.addEventListener('click', () => {
   popupProfile.open();
-  formProfile.buttonEnable();
+  formProfile.enableButton();
   handleProfile();
 }
 );
@@ -68,32 +61,7 @@ function handleProfile() {
 
 buttonAddCard.addEventListener('click', function () {
   popupAdd.open();
-  formAdd.buttonDisabled();
-}
-);
-
-popupCloseButton.addEventListener('click', function () {
-  popupProfile.close();
-}
-);
-
-popupCloseAdd.addEventListener('click', function () {
-  popupAdd.close();
-}
-);
-
-popupClosePhoto.addEventListener('click', function () {
-  popupPhoto.close();
-}
-);
-
-popupClosePhoto.addEventListener('click', function () {
-  popupPhoto.close();
-}
-);
-
-popupAvatarClose.addEventListener('click', function () {
-  popupAvatar.close();
+  formAdd.disabledButton();
 }
 );
 
@@ -112,7 +80,7 @@ const submitProfileForm = (inputValues) => {
 
 avatarChangeBtn.addEventListener('click', () => {
   popupAvatar.open();
-  formNewAvatar.buttonDisabled();
+  formNewAvatar.disabledButton();
 });
 
 const submitAvatar = (inputValues) => {
@@ -135,9 +103,6 @@ const popupProfile = new PopupWithForm('.popup_edit-profile', submitProfileForm)
 popupProfile.setEventListeners();
 
 function handleCardClick({name, link}) {
-  popupImage.src = link;
-  popupImage.alt = name;
-  popupName.textContent = name;
   popupPhoto.open(name, link)
 };
 
@@ -183,7 +148,6 @@ const submitAddPlace = (inputValues) => {
     .then((res) => {
       const cardElement = createCard(res);
       initialCardList.addItem(cardElement);
-      formNewPlace.reset();
       popupAdd.close();
     })
     .catch((err) => {
