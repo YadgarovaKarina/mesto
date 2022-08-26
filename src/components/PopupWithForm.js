@@ -29,4 +29,12 @@ export default class PopupWithForm extends Popup {
         super.close();
     }
 
+    addSaveProcess() {
+        this._form.querySelector('.popup__submit-button').textContent = 'Сохранение...';
+    }
+
+    removeSaveProcess() {
+        this._form.querySelector('.popup__submit-button').textContent = 'Сохранить';
+    }
+
 }
