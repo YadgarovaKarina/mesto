@@ -15,7 +15,6 @@ const popupCloseAdd = document.querySelector('.popup__close-button_add');
 const popupClosePhoto = document.querySelector('.popup__close-button_photo');
 const popupCloseButton = document.querySelector('.popup__close-button');
 const popupAvatarClose = document.querySelector('.popup__close-button_avatar');
-const deleteButton = document.querySelector('.element__delete-button');
 const avatarChangeBtn = document.querySelector('.profile__avatar-button');
 
 const popupImage = document.querySelector('.popup__image-content');
@@ -25,7 +24,6 @@ const formNewPlace = document.querySelector('.popup__form_new');
 const formAvatar = document.querySelector('.popup__form_avatar');
 const nameInput = document.querySelector('#popup__item-name');
 const aboutInput = document.querySelector('#popup__item-job');
-const cardContainer = document.querySelector('.elements');
 
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-48',
@@ -99,10 +97,6 @@ popupAvatarClose.addEventListener('click', function () {
 }
 );
 
-function addCard(cardElement) {
-  cardContainer.prepend(cardElement);
-}
-
 const submitProfileForm = (inputValues) => {
   popupProfile.addSaveProcess();
   api.editUserInfo(inputValues)
@@ -115,12 +109,6 @@ const submitProfileForm = (inputValues) => {
     })
     .finally(() => popupProfile.removeSaveProcess())
 }
-
-api.getUserInfo()
-  .then((res) => {
-    newUser.setUserInfo(res);
-    newUser.setUserAvatar(res);
-  }).catch((err) => console.log(err));
 
 avatarChangeBtn.addEventListener('click', () => {
   popupAvatar.open();
@@ -194,7 +182,7 @@ const submitAddPlace = (inputValues) => {
   api.addNewCard(inputValues)
     .then((res) => {
       const cardElement = createCard(res);
-      addCard(cardElement, cardContainer);
+      initialCardList.addItem(cardElement);
       formNewPlace.reset();
       popupAdd.close();
     })
@@ -213,11 +201,6 @@ const initialCardList = new Section({
   },
 }, '.elements');
 
-api.getInitialCards()
-  .then((items) => {
-    initialCardList.renderItems(items.slice().reverse());
-  }).catch((err) => console.log(err));
-
 Promise.all([
   api.getUserInfo(),
   api.getInitialCards(),
@@ -225,7 +208,7 @@ Promise.all([
   .then(([userData, cards]) => {
     newUser.setUserInfo(userData);
     newUser.setUserAvatar(userData);
-    initialCardList.renderItems(cards);
+    initialCardList.renderItems(cards.slice().reverse());
   }, api)
   .catch((err) => {
     console.log(err);
